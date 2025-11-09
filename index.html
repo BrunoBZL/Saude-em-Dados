@@ -10,7 +10,7 @@
 <body>
   <main>
     <!-- Página 1: Calculadora -->
-    <div id="pagina-calculadora" class="pagina-ativa">
+    <div id="pagina-calculadora">
       <header class="header">
         <h1>Saúde em Dados</h1>
         <p>Calcule seu IMC e TMB de forma rápida e fácil</p>
@@ -27,12 +27,12 @@
           
           <div class="form-group">
             <label>Peso (kg)</label>
-            <input type="number" id="peso-imc" placeholder="Digite seu peso" inputmode="numeric">
+            <input type="number" id="peso-imc" placeholder="Digite seu peso">
           </div>
           
           <div class="form-group">
             <label>Altura (cm)</label>
-            <input type="number" id="altura-imc" placeholder="Digite sua altura" inputmode="numeric">
+            <input type="number" id="altura-imc" placeholder="Digite sua altura">
           </div>
           
           <button class="btn-calcular" onclick="calcularIMC()">Calcular IMC</button>
@@ -48,7 +48,7 @@
           
           <div class="form-group">
             <label>Idade (anos)</label>
-            <input type="number" id="idade-tmb" placeholder="Sua idade" inputmode="numeric">
+            <input type="number" id="idade-tmb" placeholder="Sua idade">
           </div>
           
           <div class="form-group">
@@ -62,12 +62,12 @@
           
           <div class="form-group">
             <label>Peso (kg)</label>
-            <input type="number" id="peso-tmb" placeholder="Seu peso" inputmode="numeric">
+            <input type="number" id="peso-tmb" placeholder="Seu peso">
           </div>
           
           <div class="form-group">
             <label>Altura (cm)</label>
-            <input type="number" id="altura-tmb" placeholder="Sua altura" inputmode="numeric">
+            <input type="number" id="altura-tmb" placeholder="Sua altura">
           </div>
           
           <button class="btn-calcular" onclick="calcularTMB()">Calcular TMB</button>
@@ -77,24 +77,22 @@
       <!-- Tabela de Classificação IMC -->
       <section class="tabela-imc">
         <h3>Classificação do IMC</h3>
-        <div class="tabela-container">
-          <table>
-            <thead>
-              <tr>
-                <th>IMC</th>
-                <th>Classificação</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>Abaixo de 18,5</td><td>Abaixo do peso</td></tr>
-              <tr><td>18,5 - 24,9</td><td>Peso normal</td></tr>
-              <tr><td>25 - 29,9</td><td>Sobrepeso</td></tr>
-              <tr><td>30 - 34,9</td><td>Obesidade Grau I</td></tr>
-              <tr><td>35 - 39,9</td><td>Obesidade Grau II</td></tr>
-              <tr><td>Acima de 40</td><td>Obesidade Grau III</td></tr>
-            </tbody>
-          </table>
-        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>IMC</th>
+              <th>Classificação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Abaixo de 18,5</td><td>Abaixo do peso</td></tr>
+            <tr><td>18,5 - 24,9</td><td>Peso normal</td></tr>
+            <tr><td>25 - 29,9</td><td>Sobrepeso</td></tr>
+            <tr><td>30 - 34,9</td><td>Obesidade Grau I</td></tr>
+            <tr><td>35 - 39,9</td><td>Obesidade Grau II</td></tr>
+            <tr><td>Acima de 40</td><td>Obesidade Grau III</td></tr>
+          </tbody>
+        </table>
       </section>
 
       <!-- Resultados -->
@@ -114,7 +112,7 @@
     </div>
 
     <!-- Página 2: Fernanda Scheer -->
-    <div id="pagina-fernanda" class="pagina-nutricionista">
+    <div id="pagina-fernanda" class="pagina-nutricionista" style="display:none">
       <div class="nutricionista-container">
         <div class="nutricionista-header">
           <img src="https://th.bing.com/th/id/R.b9acd40f58646184ff7933c6c9c1a2c5?rik=hz%2b1ZyVJKwHACQ&riu=http%3a%2f%2fwww.queroharmonia.com.br%2fwp%2fwp-content%2fuploads%2f2017%2f05%2fFernanda-Scheer.jpg&ehk=dkJso5Vp2woxSdw77%2b8JQBmmNGoB5cjVqfmsHLA22bw%3d&risl=&pid=ImgRaw&r=0" alt="Fernanda Scheer" class="nutricionista-foto">
@@ -165,17 +163,8 @@
 
   <script>
     function mostrarPagina(pagina) {
-      if (pagina === 'calculadora') {
-        document.getElementById('pagina-calculadora').classList.add('pagina-ativa');
-        document.getElementById('pagina-calculadora').classList.remove('pagina-inativa');
-        document.getElementById('pagina-fernanda').classList.add('pagina-inativa');
-        document.getElementById('pagina-fernanda').classList.remove('pagina-ativa');
-      } else {
-        document.getElementById('pagina-fernanda').classList.add('pagina-ativa');
-        document.getElementById('pagina-fernanda').classList.remove('pagina-inativa');
-        document.getElementById('pagina-calculadora').classList.add('pagina-inativa');
-        document.getElementById('pagina-calculadora').classList.remove('pagina-ativa');
-      }
+      document.getElementById('pagina-calculadora').style.display = (pagina === 'calculadora') ? 'block' : 'none';
+      document.getElementById('pagina-fernanda').style.display = (pagina === 'fernanda') ? 'block' : 'none';
     }
 
     function calcularIMC() {
@@ -183,7 +172,7 @@
       const altura = parseFloat(document.getElementById('altura-imc').value) / 100;
 
       if (!peso || !altura || altura === 0) {
-        mostrarResultado("<p class='erro'>Preencha peso e altura corretamente.</p>");
+        mostrarResultado("<p style='color:red'>Preencha peso e altura corretamente.</p>");
         return;
       }
 
@@ -215,7 +204,7 @@
       const altura = parseFloat(document.getElementById('altura-tmb').value);
 
       if (!idade || !sexo || !peso || !altura) {
-        mostrarResultado("<p class='erro'>Preencha todos os campos do TMB corretamente.</p>");
+        mostrarResultado("<p style='color:red'>Preencha todos os campos do TMB corretamente.</p>");
         return;
       }
 
@@ -230,7 +219,7 @@
         <div class="resultado-item">
           <h3>Resultado TMB</h3>
           <p><strong>Taxa Metabólica Basal:</strong> ${tmb.toFixed(0)} kcal/dia</p>
-          <p class="observacao">Esta é a quantidade mínima de calorias que seu corpo precisa em repouso.</p>
+          <p><em>Esta é a quantidade mínima de calorias que seu corpo precisa em repouso.</em></p>
         </div>
       `;
       
@@ -239,22 +228,7 @@
 
     function mostrarResultado(html) {
       document.getElementById('resultados').innerHTML = html;
-      // Scroll suave para os resultados
-      document.getElementById('resultados').scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'nearest' 
-      });
     }
-
-    // Prevenir zoom no input focus em mobile
-    document.addEventListener('DOMContentLoaded', function() {
-      const inputs = document.querySelectorAll('input[type="number"]');
-      inputs.forEach(input => {
-        input.addEventListener('focus', function() {
-          this.style.fontSize = '16px'; // Prevenir zoom no iOS
-        });
-      });
-    });
   </script>
 </body>
 </html>
