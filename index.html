@@ -1,273 +1,234 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saúde em Dados</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saúde em Dados - Calculadora & Fernanda Scheer</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="container">
-        <header>
-            <h1>Saúde em Dados</h1>
-            <p>Calcule seu IMC e TMB de forma rápida e fácil</p>
-        </header>
+  <main>
+    <!-- Página 1: Calculadora -->
+    <div id="pagina-calculadora">
+      <header class="header">
+        <h1>Saúde em Dados</h1>
+        <p>Calcule seu IMC e TMB de forma rápida e fácil</p>
+      </header>
 
-        <nav class="tabs">
-            <button class="tab-button active" data-tab="imc">IMC</button>
-            <button class="tab-button" data-tab="tmb">TMB</button>
-        </nav>
+      <div class="calculadora-container">
+        <!-- Seção IMC -->
+        <section class="calculadora-section">
+          <h2>IMC</h2>
+          <div class="descricao">
+            <h3>O que é IMC?</h3>
+            <p>O Índice de Massa Corporal (IMC) é uma medida internacional usada para calcular se uma pessoa está no peso ideal. É calculado dividindo o peso (em kg) pela altura ao quadrado (em metros).</p>
+          </div>
+          
+          <div class="form-group">
+            <label>Peso (kg)</label>
+            <input type="number" id="peso-imc" placeholder="Digite seu peso">
+          </div>
+          
+          <div class="form-group">
+            <label>Altura (cm)</label>
+            <input type="number" id="altura-imc" placeholder="Digite sua altura">
+          </div>
+          
+          <button class="btn-calcular" onclick="calcularIMC()">Calcular IMC</button>
+        </section>
 
-        <main>
-            <!-- Seção IMC -->
-            <section id="imc" class="tab-content active">
-                <div class="info-section">
-                    <h2>O que é IMC?</h2>
-                    <p>O Índice de Massa Corporal (IMC) é uma medida internacional usada para calcular se uma pessoa está no peso ideal. É calculado dividindo o peso (em kg) pela altura ao quadrado (em metros).</p>
-                </div>
+        <!-- Seção TMB -->
+        <section class="calculadora-section">
+          <h2>TMB</h2>
+          <div class="descricao">
+            <h3>O que é TMB?</h3>
+            <p>A Taxa Metabólica Basal (TMB) é a quantidade mínima de energia que o corpo precisa para manter as funções vitais em repouso, como respirar e manter a temperatura corporal. É influenciada por fatores como idade, sexo, peso e altura.</p>
+          </div>
+          
+          <div class="form-group">
+            <label>Idade (anos)</label>
+            <input type="number" id="idade-tmb" placeholder="Sua idade">
+          </div>
+          
+          <div class="form-group">
+            <label>Sexo</label>
+            <select id="sexo-tmb">
+              <option value="">Selecione</option>
+              <option value="masculino">Masculino</option>
+              <option value="feminino">Feminino</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>Peso (kg)</label>
+            <input type="number" id="peso-tmb" placeholder="Seu peso">
+          </div>
+          
+          <div class="form-group">
+            <label>Altura (cm)</label>
+            <input type="number" id="altura-tmb" placeholder="Sua altura">
+          </div>
+          
+          <button class="btn-calcular" onclick="calcularTMB()">Calcular TMB</button>
+        </section>
+      </div>
 
-                <form id="imc-form">
-                    <div class="input-group">
-                        <label for="peso">Peso (kg)</label>
-                        <input type="number" id="peso" step="0.1" min="1" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="altura">Altura (cm)</label>
-                        <input type="number" id="altura" min="1" required>
-                    </div>
-                    <button type="submit">Calcular IMC</button>
-                </form>
+      <!-- Tabela de Classificação IMC -->
+      <section class="tabela-imc">
+        <h3>Classificação do IMC</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>IMC</th>
+              <th>Classificação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Abaixo de 18,5</td><td>Abaixo do peso</td></tr>
+            <tr><td>18,5 - 24,9</td><td>Peso normal</td></tr>
+            <tr><td>25 - 29,9</td><td>Sobrepeso</td></tr>
+            <tr><td>30 - 34,9</td><td>Obesidade Grau I</td></tr>
+            <tr><td>35 - 39,9</td><td>Obesidade Grau II</td></tr>
+            <tr><td>Acima de 40</td><td>Obesidade Grau III</td></tr>
+          </tbody>
+        </table>
+      </section>
 
-                <div id="imc-result" class="result hidden">
-                    <h3>Seu IMC: <span id="imc-value"></span></h3>
-                    <p id="imc-classification"></p>
-                    
-                    <div class="water-recommendation">
-                        <h4>Recomendação de Água</h4>
-                        <p id="water-amount"></p>
-                    </div>
-                    
-                    <div class="nutritionist-advice">
-                        <p>Independente do seu resultado, é sempre melhor buscar um nutricionista para uma melhor avaliação.</p>
-                    </div>
-                </div>
+      <!-- Resultados -->
+      <div id="resultados" class="resultados"></div>
 
-                <div class="classification-table">
-                    <h3>Classificação do IMC</h3>
-                    <table>
-                        <tr>
-                            <th>IMC</th>
-                            <th>Classificação</th>
-                        </tr>
-                        <tr>
-                            <td>Abaixo de 18,5</td>
-                            <td>Abaixo do peso</td>
-                        </tr>
-                        <tr>
-                            <td>18,5 - 24,9</td>
-                            <td>Peso normal</td>
-                        </tr>
-                        <tr>
-                            <td>25 - 29,9</td>
-                            <td>Sobrepeso</td>
-                        </tr>
-                        <tr>
-                            <td>30 - 34,9</td>
-                            <td>Obesidade Grau I</td>
-                        </tr>
-                        <tr>
-                            <td>35 - 39,9</td>
-                            <td>Obesidade Grau II</td>
-                        </tr>
-                        <tr>
-                            <td>Acima de 40</td>
-                            <td>Obesidade Grau III</td>
-                        </tr>
-                    </table>
-                </div>
-            </section>
+      <!-- Botão Nutricionista -->
+      <div class="nutricionista-link">
+        <button class="btn-nutricionista" onclick="mostrarPagina('fernanda')">
+          👩‍⚕️ Conheça a nutricionista
+        </button>
+      </div>
 
-            <!-- Seção TMB -->
-            <section id="tmb" class="tab-content">
-                <div class="info-section">
-                    <h2>O que é TMB?</h2>
-                    <p>A Taxa Metabólica Basal (TMB) é a quantidade mínima de energia que o corpo precisa para manter as funções vitais em repouso, como respirar e manter a temperatura corporal. É influenciada por fatores como idade, sexo, peso e altura.</p>
-                </div>
-
-                <form id="tmb-form">
-                    <div class="input-group">
-                        <label for="idade">Idade (anos)</label>
-                        <input type="number" id="idade" min="1" max="120" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="sexo">Sexo</label>
-                        <select id="sexo" required>
-                            <option value="">Selecione</option>
-                            <option value="masculino">Masculino</option>
-                            <option value="feminino">Feminino</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label for="peso-tmb">Peso (kg)</label>
-                        <input type="number" id="peso-tmb" step="0.1" min="1" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="altura-tmb">Altura (cm)</label>
-                        <input type="number" id="altura-tmb" min="1" required>
-                    </div>
-                    <button type="submit">Calcular TMB</button>
-                </form>
-
-                <div id="tmb-result" class="result hidden">
-                    <h3>Sua TMB: <span id="tmb-value"></span> calorias/dia</h3>
-                    
-                    <div class="water-recommendation">
-                        <h4>Recomendação de Água</h4>
-                        <p id="tmb-water-amount"></p>
-                    </div>
-                    
-                    <div class="nutritionist-advice">
-                        <p>Independente do seu resultado, é sempre melhor buscar um nutricionista para uma melhor avaliação.</p>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <p>Saúde em Dados - Calculadora de IMC e TMB</p>
-            <p>As informações fornecidas são para fins educacionais. Consulte um profissional de saúde para orientações personalizadas.</p>
-        </footer>
+      <footer class="footer">
+        <p><strong>Saúde em Dados - Calculadora de IMC e TMB</strong></p>
+        <p>As informações fornecidas são para fins educacionais. Consulte um profissional de saúde para orientações personalizadas.</p>
+      </footer>
     </div>
 
-    <script>
-        // Controle das abas
-        const tabButtons = document.querySelectorAll('.tab-button');
-        const tabContents = document.querySelectorAll('.tab-content');
-        
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const tabId = button.getAttribute('data-tab');
-                
-                // Remove a classe active de todos os botões e conteúdos
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-                
-                // Adiciona a classe active ao botão clicado e ao conteúdo correspondente
-                button.classList.add('active');
-                document.getElementById(tabId).classList.add('active');
-            });
-        });
-        
-        // Cálculo do IMC
-        const imcForm = document.getElementById('imc-form');
-        const imcResult = document.getElementById('imc-result');
-        const imcValue = document.getElementById('imc-value');
-        const imcClassification = document.getElementById('imc-classification');
-        const waterAmount = document.getElementById('water-amount');
-        
-        imcForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const peso = parseFloat(document.getElementById('peso').value);
-            const altura = parseFloat(document.getElementById('altura').value) / 100; // Converter cm para m
-            
-            if (peso && altura) {
-                const imc = peso / (altura * altura);
-                const classificacao = classificarIMC(imc);
-                const aguaRecomendada = calcularAguaIMC(imc, peso);
-                
-                imcValue.textContent = imc.toFixed(2);
-                imcClassification.textContent = classificacao;
-                waterAmount.textContent = `Recomendamos o consumo de aproximadamente ${aguaRecomendada} litros de água por dia.`;
-                imcResult.classList.remove('hidden');
-                
-                // Rolar para o resultado
-                imcResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        });
-        
-        function classificarIMC(imc) {
-            if (imc < 18.5) return 'Abaixo do peso';
-            if (imc < 25) return 'Peso normal';
-            if (imc < 30) return 'Sobrepeso';
-            if (imc < 35) return 'Obesidade Grau I';
-            if (imc < 40) return 'Obesidade Grau II';
-            return 'Obesidade Grau III';
-        }
-        
-        function calcularAguaIMC(imc, peso) {
-            // Base: 35ml por kg de peso corporal, ajustado pelo IMC
-            let fatorIMC = 1;
-            
-            if (imc < 18.5) {
-                fatorIMC = 0.9; // Abaixo do peso - necessidade ligeiramente menor
-            } else if (imc >= 25 && imc < 30) {
-                fatorIMC = 1.1; // Sobrepeso - necessidade aumentada
-            } else if (imc >= 30) {
-                fatorIMC = 1.2; // Obesidade - necessidade significativamente aumentada
-            }
-            
-            const aguaBase = (peso * 0.035).toFixed(1);
-            const aguaAjustada = (peso * 0.035 * fatorIMC).toFixed(1);
-            
-            return aguaAjustada;
-        }
-        
-        // Cálculo da TMB
-        const tmbForm = document.getElementById('tmb-form');
-        const tmbResult = document.getElementById('tmb-result');
-        const tmbValue = document.getElementById('tmb-value');
-        const tmbWaterAmount = document.getElementById('tmb-water-amount');
-        
-        tmbForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const idade = parseInt(document.getElementById('idade').value);
-            const sexo = document.getElementById('sexo').value;
-            const peso = parseFloat(document.getElementById('peso-tmb').value);
-            const altura = parseFloat(document.getElementById('altura-tmb').value);
-            
-            if (idade && sexo && peso && altura) {
-                let tmb;
-                
-                // Fórmula de Harris-Benedict revisada
-                if (sexo === 'masculino') {
-                    tmb = 88.362 + (13.397 * peso) + (4.799 * altura) - (5.677 * idade);
-                } else {
-                    tmb = 447.593 + (9.247 * peso) + (3.098 * altura) - (4.330 * idade);
-                }
-                
-                const aguaRecomendada = calcularAguaTMB(tmb, peso);
-                
-                tmbValue.textContent = Math.round(tmb);
-                tmbWaterAmount.textContent = `Recomendamos o consumo de aproximadamente ${aguaRecomendada} litros de água por dia.`;
-                tmbResult.classList.remove('hidden');
-                
-                // Rolar para o resultado
-                tmbResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        });
-        
-        function calcularAguaTMB(tmb, peso) {
-            // Base: 1ml de água para cada caloria da TMB, com mínimo baseado no peso
-            const aguaBaseCalorias = (tmb / 1000).toFixed(1);
-            const aguaBasePeso = (peso * 0.035).toFixed(1);
-            
-            // Usar o maior valor entre os dois cálculos
-            return Math.max(parseFloat(aguaBaseCalorias), parseFloat(aguaBasePeso)).toFixed(1);
-        }
-        
-        // Limpar resultados ao mudar de aba
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                imcResult.classList.add('hidden');
-                tmbResult.classList.add('hidden');
-                
-                // Limpar formulários
-                document.getElementById('imc-form').reset();
-                document.getElementById('tmb-form').reset();
-            });
-        });
-    </script>
+    <!-- Página 2: Fernanda Scheer -->
+    <div id="pagina-fernanda" class="pagina-nutricionista" style="display:none">
+      <div class="nutricionista-container">
+        <div class="nutricionista-header">
+          <img src="https://th.bing.com/th/id/R.b9acd40f58646184ff7933c6c9c1a2c5?rik=hz%2b1ZyVJKwHACQ&riu=http%3a%2f%2fwww.queroharmonia.com.br%2fwp%2fwp-content%2fuploads%2f2017%2f05%2fFernanda-Scheer.jpg&ehk=dkJso5Vp2woxSdw77%2b8JQBmmNGoB5cjVqfmsHLA22bw%3d&risl=&pid=ImgRaw&r=0" alt="Fernanda Scheer" class="nutricionista-foto">
+          <h2>Fernanda Scheer</h2>
+          <p class="nutricionista-especialidade">Nutricionista especializada em nutrição funcional e integrativa.</p>
+        </div>
+
+        <div class="nutricionista-info">
+          <div class="info-item">
+            <strong>+15 anos de experiência</strong>
+          </div>
+          <div class="info-item">
+            <p>Atendimento online</p>
+          </div>
+          <div class="info-item avaliacao">
+            <p>⭐⭐⭐⭐⭐ <span>(4,9/5 - média de pacientes)</span></p>
+          </div>
+        </div>
+
+        <div class="nutricionista-contatos">
+          <a href="https://fernandascheer.com.br/" target="_blank" class="contato-link">
+            🌐 Site Oficial
+          </a>
+          <a href="https://wa.me/5511996007054" target="_blank" class="contato-link">
+            📱 Agendar no WhatsApp
+          </a>
+          <a href="https://www.instagram.com/fernandascheer" target="_blank" class="contato-link">
+            📸 Instagram
+          </a>
+        </div>
+
+        <div class="nutricionista-feitos">
+          <h3>Feitos & Reconhecimento</h3>
+          <p>Fernanda Scheer é referência em nutrição funcional, com publicações em revistas renomadas, participação em congressos internacionais e consultoria para atletas de alto rendimento.</p>
+        </div>
+
+        <div class="nutricionista-satisfacao">
+          <h3>Pesquisa de Satisfação</h3>
+          <p>⭐ 4,9/5 - A maioria dos pacientes destaca sua escuta atenta, resultados consistentes e abordagem humanizada.</p>
+        </div>
+
+        <button class="btn-voltar" onclick="mostrarPagina('calculadora')">
+          ⬅️ Voltar à calculadora
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function mostrarPagina(pagina) {
+      document.getElementById('pagina-calculadora').style.display = (pagina === 'calculadora') ? 'block' : 'none';
+      document.getElementById('pagina-fernanda').style.display = (pagina === 'fernanda') ? 'block' : 'none';
+    }
+
+    function calcularIMC() {
+      const peso = parseFloat(document.getElementById('peso-imc').value);
+      const altura = parseFloat(document.getElementById('altura-imc').value) / 100;
+
+      if (!peso || !altura || altura === 0) {
+        mostrarResultado("<p style='color:red'>Preencha peso e altura corretamente.</p>");
+        return;
+      }
+
+      const imc = peso / (altura * altura);
+      let classificacao = '';
+
+      if (imc < 18.5) classificacao = 'Abaixo do peso';
+      else if (imc < 25) classificacao = 'Peso normal';
+      else if (imc < 30) classificacao = 'Sobrepeso';
+      else if (imc < 35) classificacao = 'Obesidade Grau I';
+      else if (imc < 40) classificacao = 'Obesidade Grau II';
+      else classificacao = 'Obesidade Grau III';
+
+      const resultado = `
+        <div class="resultado-item">
+          <h3>Resultado IMC</h3>
+          <p><strong>IMC:</strong> ${imc.toFixed(2)}</p>
+          <p><strong>Classificação:</strong> ${classificacao}</p>
+        </div>
+      `;
+      
+      mostrarResultado(resultado);
+    }
+
+    function calcularTMB() {
+      const idade = parseInt(document.getElementById('idade-tmb').value);
+      const sexo = document.getElementById('sexo-tmb').value;
+      const peso = parseFloat(document.getElementById('peso-tmb').value);
+      const altura = parseFloat(document.getElementById('altura-tmb').value);
+
+      if (!idade || !sexo || !peso || !altura) {
+        mostrarResultado("<p style='color:red'>Preencha todos os campos do TMB corretamente.</p>");
+        return;
+      }
+
+      let tmb;
+      if (sexo === "masculino") {
+        tmb = 88.36 + (13.4 * peso) + (4.8 * altura) - (5.7 * idade);
+      } else {
+        tmb = 447.6 + (9.2 * peso) + (3.1 * altura) - (4.3 * idade);
+      }
+
+      const resultado = `
+        <div class="resultado-item">
+          <h3>Resultado TMB</h3>
+          <p><strong>Taxa Metabólica Basal:</strong> ${tmb.toFixed(0)} kcal/dia</p>
+          <p><em>Esta é a quantidade mínima de calorias que seu corpo precisa em repouso.</em></p>
+        </div>
+      `;
+      
+      mostrarResultado(resultado);
+    }
+
+    function mostrarResultado(html) {
+      document.getElementById('resultados').innerHTML = html;
+    }
+  </script>
 </body>
 </html>
