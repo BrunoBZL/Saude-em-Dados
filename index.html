@@ -3,155 +3,304 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Saúde em Dados - Calculadora & Fernanda Scheer</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Saúde em Dados</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      background: #667eea;
+      padding: 15px;
+      color: #333;
+    }
+    
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+    
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 20px;
+    }
+    
+    .header h1 {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+    
+    .calculadora-section {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .calculadora-section h2 {
+      color: #4a5568;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    
+    .form-group {
+      margin-bottom: 12px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    
+    .btn-calcular {
+      width: 100%;
+      padding: 15px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    
+    .tabela-imc {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .tabela-imc h3 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      font-size: 14px;
+    }
+    
+    .resultados {
+      margin-bottom: 15px;
+    }
+    
+    .resultado-item {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    
+    .btn-nutricionista {
+      width: 100%;
+      padding: 15px;
+      background: #48bb78;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+    
+    .footer {
+      text-align: center;
+      color: white;
+      font-size: 12px;
+    }
+    
+    /* Página da nutricionista */
+    .pagina-nutricionista {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    
+    .nutricionista-header {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    
+    .nutricionista-foto {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+    
+    .contato-link {
+      display: block;
+      padding: 12px;
+      background: #667eea;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    
+    .btn-voltar {
+      width: 100%;
+      padding: 15px;
+      background: #718096;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-top: 15px;
+    }
+    
+    /* Esconder/Mostrar páginas */
+    .pagina {
+      display: none;
+    }
+    
+    .pagina-ativa {
+      display: block;
+    }
+  </style>
 </head>
 
 <body>
-  <main>
+  <div class="container">
     <!-- Página 1: Calculadora -->
-    <div id="pagina-calculadora">
-      <header class="header">
+    <div id="pagina-calculadora" class="pagina pagina-ativa">
+      <div class="header">
         <h1>Saúde em Dados</h1>
-        <p>Calcule seu IMC e TMB de forma rápida e fácil</p>
-      </header>
-
-      <div class="calculadora-container">
-        <!-- Seção IMC -->
-        <section class="calculadora-section">
-          <h2>IMC</h2>
-          <div class="descricao">
-            <h3>O que é IMC?</h3>
-            <p>O Índice de Massa Corporal (IMC) é uma medida internacional usada para calcular se uma pessoa está no peso ideal. É calculado dividindo o peso (em kg) pela altura ao quadrado (em metros).</p>
-          </div>
-          
-          <div class="form-group">
-            <label>Peso (kg)</label>
-            <input type="number" id="peso-imc" placeholder="Digite seu peso">
-          </div>
-          
-          <div class="form-group">
-            <label>Altura (cm)</label>
-            <input type="number" id="altura-imc" placeholder="Digite sua altura">
-          </div>
-          
-          <button class="btn-calcular" onclick="calcularIMC()">Calcular IMC</button>
-        </section>
-
-        <!-- Seção TMB -->
-        <section class="calculadora-section">
-          <h2>TMB</h2>
-          <div class="descricao">
-            <h3>O que é TMB?</h3>
-            <p>A Taxa Metabólica Basal (TMB) é a quantidade mínima de energia que o corpo precisa para manter as funções vitais em repouso, como respirar e manter a temperatura corporal. É influenciada por fatores como idade, sexo, peso e altura.</p>
-          </div>
-          
-          <div class="form-group">
-            <label>Idade (anos)</label>
-            <input type="number" id="idade-tmb" placeholder="Sua idade">
-          </div>
-          
-          <div class="form-group">
-            <label>Sexo</label>
-            <select id="sexo-tmb">
-              <option value="">Selecione</option>
-              <option value="masculino">Masculino</option>
-              <option value="feminino">Feminino</option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label>Peso (kg)</label>
-            <input type="number" id="peso-tmb" placeholder="Seu peso">
-          </div>
-          
-          <div class="form-group">
-            <label>Altura (cm)</label>
-            <input type="number" id="altura-tmb" placeholder="Sua altura">
-          </div>
-          
-          <button class="btn-calcular" onclick="calcularTMB()">Calcular TMB</button>
-        </section>
+        <p>Calcule seu IMC e TMB</p>
       </div>
 
-      <!-- Tabela de Classificação IMC -->
-      <section class="tabela-imc">
+      <!-- Seção IMC -->
+      <div class="calculadora-section">
+        <h2>IMC</h2>
+        <p><strong>O que é IMC?</strong> Índice de Massa Corporal - mede se você está no peso ideal.</p>
+        
+        <div class="form-group">
+          <label>Peso (kg)</label>
+          <input type="number" id="peso-imc" placeholder="Ex: 70">
+        </div>
+        
+        <div class="form-group">
+          <label>Altura (cm)</label>
+          <input type="number" id="altura-imc" placeholder="Ex: 170">
+        </div>
+        
+        <button class="btn-calcular" onclick="calcularIMC()">Calcular IMC</button>
+      </div>
+
+      <!-- Seção TMB -->
+      <div class="calculadora-section">
+        <h2>TMB</h2>
+        <p><strong>O que é TMB?</strong> Taxa Metabólica Basal - calorias que seu corpo gasta em repouso.</p>
+        
+        <div class="form-group">
+          <label>Idade (anos)</label>
+          <input type="number" id="idade-tmb" placeholder="Ex: 30">
+        </div>
+        
+        <div class="form-group">
+          <label>Sexo</label>
+          <select id="sexo-tmb">
+            <option value="">Selecione</option>
+            <option value="masculino">Masculino</option>
+            <option value="feminino">Feminino</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>Peso (kg)</label>
+          <input type="number" id="peso-tmb" placeholder="Ex: 70">
+        </div>
+        
+        <div class="form-group">
+          <label>Altura (cm)</label>
+          <input type="number" id="altura-tmb" placeholder="Ex: 170">
+        </div>
+        
+        <button class="btn-calcular" onclick="calcularTMB()">Calcular TMB</button>
+      </div>
+
+      <!-- Tabela IMC -->
+      <div class="tabela-imc">
         <h3>Classificação do IMC</h3>
         <table>
-          <thead>
-            <tr>
-              <th>IMC</th>
-              <th>Classificação</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Abaixo de 18,5</td><td>Abaixo do peso</td></tr>
-            <tr><td>18,5 - 24,9</td><td>Peso normal</td></tr>
-            <tr><td>25 - 29,9</td><td>Sobrepeso</td></tr>
-            <tr><td>30 - 34,9</td><td>Obesidade Grau I</td></tr>
-            <tr><td>35 - 39,9</td><td>Obesidade Grau II</td></tr>
-            <tr><td>Acima de 40</td><td>Obesidade Grau III</td></tr>
-          </tbody>
+          <tr><td>< 18,5</td><td>Abaixo do peso</td></tr>
+          <tr><td>18,5 - 24,9</td><td>Peso normal</td></tr>
+          <tr><td>25 - 29,9</td><td>Sobrepeso</td></tr>
+          <tr><td>30 - 34,9</td><td>Obesidade I</td></tr>
+          <tr><td>35 - 39,9</td><td>Obesidade II</td></tr>
+          <tr><td>> 40</td><td>Obesidade III</td></tr>
         </table>
-      </section>
+      </div>
 
       <!-- Resultados -->
       <div id="resultados" class="resultados"></div>
 
       <!-- Botão Nutricionista -->
-      <div class="nutricionista-link">
-        <button class="btn-nutricionista" onclick="mostrarPagina('fernanda')">
-          👩‍⚕️ Conheça a nutricionista
-        </button>
-      </div>
+      <button class="btn-nutricionista" onclick="mostrarPagina('fernanda')">
+        👩‍⚕️ Conheça a nutricionista
+      </button>
 
-      <footer class="footer">
+      <div class="footer">
         <p><strong>Saúde em Dados - Calculadora de IMC e TMB</strong></p>
-        <p>As informações fornecidas são para fins educacionais. Consulte um profissional de saúde para orientações personalizadas.</p>
-      </footer>
+        <p>Informações educacionais. Consulte um profissional.</p>
+      </div>
     </div>
 
-    <!-- Página 2: Fernanda Scheer -->
-    <div id="pagina-fernanda" class="pagina-nutricionista" style="display:none">
-      <div class="nutricionista-container">
+    <!-- Página 2: Nutricionista -->
+    <div id="pagina-fernanda" class="pagina">
+      <div class="pagina-nutricionista">
         <div class="nutricionista-header">
           <img src="https://th.bing.com/th/id/R.b9acd40f58646184ff7933c6c9c1a2c5?rik=hz%2b1ZyVJKwHACQ&riu=http%3a%2f%2fwww.queroharmonia.com.br%2fwp%2fwp-content%2fuploads%2f2017%2f05%2fFernanda-Scheer.jpg&ehk=dkJso5Vp2woxSdw77%2b8JQBmmNGoB5cjVqfmsHLA22bw%3d&risl=&pid=ImgRaw&r=0" alt="Fernanda Scheer" class="nutricionista-foto">
           <h2>Fernanda Scheer</h2>
-          <p class="nutricionista-especialidade">Nutricionista especializada em nutrição funcional e integrativa.</p>
+          <p>Nutricionista especializada</p>
         </div>
 
-        <div class="nutricionista-info">
-          <div class="info-item">
-            <strong>+15 anos de experiência</strong>
-          </div>
-          <div class="info-item">
-            <p>Atendimento online</p>
-          </div>
-          <div class="info-item avaliacao">
-            <p>⭐⭐⭐⭐⭐ <span>(4,9/5 - média de pacientes)</span></p>
-          </div>
+        <div style="text-align: center; margin: 15px 0;">
+          <p><strong>+15 anos de experiência</strong></p>
+          <p>Atendimento online</p>
+          <p>⭐⭐⭐⭐⭐ (4,9/5)</p>
         </div>
 
-        <div class="nutricionista-contatos">
-          <a href="https://fernandascheer.com.br/" target="_blank" class="contato-link">
-            🌐 Site Oficial
-          </a>
-          <a href="https://wa.me/5511996007054" target="_blank" class="contato-link">
-            📱 Agendar no WhatsApp
-          </a>
-          <a href="https://www.instagram.com/fernandascheer" target="_blank" class="contato-link">
-            📸 Instagram
-          </a>
-        </div>
+        <a href="https://fernandascheer.com.br/" target="_blank" class="contato-link">
+          🌐 Site Oficial
+        </a>
+        <a href="https://wa.me/5511996007054" target="_blank" class="contato-link">
+          📱 Agendar no WhatsApp
+        </a>
+        <a href="https://www.instagram.com/fernandascheer" target="_blank" class="contato-link">
+          📸 Instagram
+        </a>
 
-        <div class="nutricionista-feitos">
+        <div style="margin: 15px 0;">
           <h3>Feitos & Reconhecimento</h3>
-          <p>Fernanda Scheer é referência em nutrição funcional, com publicações em revistas renomadas, participação em congressos internacionais e consultoria para atletas de alto rendimento.</p>
+          <p>Referência em nutrição funcional, com publicações em revistas e consultoria para atletas.</p>
         </div>
 
-        <div class="nutricionista-satisfacao">
-          <h3>Pesquisa de Satisfação</h3>
-          <p>⭐ 4,9/5 - A maioria dos pacientes destaca sua escuta atenta, resultados consistentes e abordagem humanizada.</p>
+        <div style="margin: 15px 0;">
+          <h3>Avaliação dos Pacientes</h3>
+          <p>⭐ 4,9/5 - Pacientes destacam escuta atenta e resultados consistentes.</p>
         </div>
 
         <button class="btn-voltar" onclick="mostrarPagina('calculadora')">
@@ -159,20 +308,29 @@
         </button>
       </div>
     </div>
-  </main>
+  </div>
 
   <script>
     function mostrarPagina(pagina) {
-      document.getElementById('pagina-calculadora').style.display = (pagina === 'calculadora') ? 'block' : 'none';
-      document.getElementById('pagina-fernanda').style.display = (pagina === 'fernanda') ? 'block' : 'none';
+      // Esconder todas as páginas
+      document.querySelectorAll('.pagina').forEach(pag => {
+        pag.classList.remove('pagina-ativa');
+      });
+      
+      // Mostrar a página solicitada
+      if (pagina === 'calculadora') {
+        document.getElementById('pagina-calculadora').classList.add('pagina-ativa');
+      } else {
+        document.getElementById('pagina-fernanda').classList.add('pagina-ativa');
+      }
     }
 
     function calcularIMC() {
       const peso = parseFloat(document.getElementById('peso-imc').value);
       const altura = parseFloat(document.getElementById('altura-imc').value) / 100;
 
-      if (!peso || !altura || altura === 0) {
-        mostrarResultado("<p style='color:red'>Preencha peso e altura corretamente.</p>");
+      if (!peso || !altura) {
+        mostrarResultado("<p style='color: red; text-align: center;'>Preencha peso e altura</p>");
         return;
       }
 
@@ -204,7 +362,7 @@
       const altura = parseFloat(document.getElementById('altura-tmb').value);
 
       if (!idade || !sexo || !peso || !altura) {
-        mostrarResultado("<p style='color:red'>Preencha todos os campos do TMB corretamente.</p>");
+        mostrarResultado("<p style='color: red; text-align: center;'>Preencha todos os campos</p>");
         return;
       }
 
@@ -219,7 +377,7 @@
         <div class="resultado-item">
           <h3>Resultado TMB</h3>
           <p><strong>Taxa Metabólica Basal:</strong> ${tmb.toFixed(0)} kcal/dia</p>
-          <p><em>Esta é a quantidade mínima de calorias que seu corpo precisa em repouso.</em></p>
+          <p><em>Calorias que seu corpo gasta em repouso</em></p>
         </div>
       `;
       
