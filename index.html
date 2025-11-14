@@ -4,194 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Saúde em Dados</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: Arial, sans-serif;
-      background: #667eea;
-      padding: 15px;
-      color: #333;
-    }
-    
-    .container {
-      max-width: 100%;
-      margin: 0 auto;
-    }
-    
-    .header {
-      text-align: center;
-      color: white;
-      margin-bottom: 20px;
-    }
-    
-    .header h1 {
-      font-size: 24px;
-      margin-bottom: 5px;
-    }
-    
-    .calculadora-section {
-      background: white;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-    
-    .calculadora-section h2 {
-      color: #4a5568;
-      margin-bottom: 10px;
-      font-size: 18px;
-    }
-    
-    .form-group {
-      margin-bottom: 12px;
-    }
-    
-    .form-group label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-    
-    .form-group input,
-    .form-group select {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-    
-    .btn-calcular {
-      width: 100%;
-      padding: 15px;
-      background: #667eea;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      margin-top: 10px;
-    }
-    
-    .tabela-imc {
-      background: white;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-    
-    .tabela-imc h3 {
-      text-align: center;
-      margin-bottom: 10px;
-    }
-    
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    
-    th, td {
-      padding: 10px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-      font-size: 14px;
-    }
-    
-    .resultados {
-      margin-bottom: 15px;
-    }
-    
-    .resultado-item {
-      background: white;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-    
-    .btn-nutricionista {
-      width: 100%;
-      padding: 15px;
-      background: #48bb78;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      margin-bottom: 15px;
-    }
-    
-    .footer {
-      text-align: center;
-      color: white;
-      font-size: 12px;
-    }
-    
-    /* Página da nutricionista */
-    .pagina-nutricionista {
-      background: white;
-      padding: 15px;
-      border-radius: 10px;
-    }
-    
-    .nutricionista-header {
-      text-align: center;
-      margin-bottom: 15px;
-    }
-    
-    .nutricionista-foto {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 15px;
-      border: 4px solid #667eea;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    .contato-link {
-      display: block;
-      padding: 12px;
-      background: #667eea;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      margin-bottom: 10px;
-      text-align: center;
-      transition: background-color 0.3s ease;
-    }
-    
-    .contato-link:hover {
-      background: #5a6fd8;
-    }
-    
-    .btn-voltar {
-      width: 100%;
-      padding: 15px;
-      background: #718096;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      margin-top: 15px;
-      transition: background-color 0.3s ease;
-    }
-    
-    .btn-voltar:hover {
-      background: #636a78;
-    }
-    
-    /* Esconder/Mostrar páginas */
-    .pagina {
-      display: none;
-    }
-    
-    .pagina-ativa {
-      display: block;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -210,12 +23,12 @@
         
         <div class="form-group">
           <label>Peso (kg)</label>
-          <input type="number" id="peso-imc" placeholder="Ex: 70">
+          <input type="text" id="peso-imc" placeholder="Ex: 70 ou 70.5" inputmode="decimal">
         </div>
         
         <div class="form-group">
           <label>Altura (cm)</label>
-          <input type="number" id="altura-imc" placeholder="Ex: 170">
+          <input type="text" id="altura-imc" placeholder="Ex: 170 ou 1.70" inputmode="decimal">
         </div>
         
         <button class="btn-calcular" onclick="calcularIMC()">Calcular IMC</button>
@@ -242,12 +55,12 @@
         
         <div class="form-group">
           <label>Peso (kg)</label>
-          <input type="number" id="peso-tmb" placeholder="Ex: 70">
+          <input type="text" id="peso-tmb" placeholder="Ex: 70 ou 70.5" inputmode="decimal">
         </div>
         
         <div class="form-group">
           <label>Altura (cm)</label>
-          <input type="number" id="altura-tmb" placeholder="Ex: 170">
+          <input type="text" id="altura-tmb" placeholder="Ex: 170" inputmode="decimal">
         </div>
         
         <button class="btn-calcular" onclick="calcularTMB()">Calcular TMB</button>
@@ -277,6 +90,11 @@
       <div class="footer">
         <p><strong>Saúde em Dados - Calculadora de IMC e TMB</strong></p>
         <p>Informações educacionais. Consulte um profissional.</p>
+        <div class="fontes">
+          <p>Fontes consultadas:</p>
+          <a href="https://www.gov.br/saude/pt-br/assuntos/saude-brasil/eu-quero-ter-peso-saudavel/noticias/2017/imc-voce-sabe-calcular-seu-peso-adequado" target="_blank">Ministério da Saúde - IMC</a> | 
+          <a href="https://www.tuasaude.com/calculadora/taxa-metabolica-basal/" target="_blank">Tua Saúde - TMB</a>
+        </div>
       </div>
     </div>
 
@@ -289,7 +107,7 @@
           <p>Nutricionista especializada</p>
         </div>
 
-        <div style="text-align: center; margin: 15px 0;">
+        <div class="nutricionista-info">
           <p><strong>Experiência em nutrição</strong></p>
           <p>Atendimento online</p>
         </div>
@@ -303,6 +121,11 @@
         <a href="https://www.instagram.com/nutrilupeixoto?igsh=MWx2emhwNmlmamxkNQ==" target="_blank" class="contato-link">
           📸 Instagram
         </a>
+
+        <div class="rodape-nutricionista">
+          <p><strong>Aviso Ético</strong></p>
+          <p>Esta pesquisa seguiu os princípios éticos estabelecidos pela Resolução nº 466/2012 do Conselho Nacional de Saúde, que dispõe sobre as diretrizes e normas regulamentadoras de pesquisas envolvendo seres humanos no Brasil, garantindo consentimento livre e esclarecido, confidencialidade, sigilo da identidade dos participantes e respeito à dignidade, autonomia e proteção dos sujeitos envolvidos.</p>
+        </div>
 
         <button class="btn-voltar" onclick="mostrarPagina('calculadora')">
           ⬅️ Voltar à calculadora
@@ -326,31 +149,67 @@
       }
     }
 
-    function calcularIMC() {
-      const peso = parseFloat(document.getElementById('peso-imc').value);
-      const altura = parseFloat(document.getElementById('altura-imc').value) / 100;
+    // Função para converter string para número, tratando vírgula e ponto
+    function converterParaNumero(valor) {
+      if (!valor) return null;
+      
+      // Substitui vírgula por ponto e remove espaços
+      const valorLimpo = valor.toString().replace(',', '.').replace(/\s/g, '');
+      
+      // Converte para número
+      const numero = parseFloat(valorLimpo);
+      
+      // Se for altura em metros (menor que 3), converte para cm
+      if (numero < 3 && valorLimpo.includes('.')) {
+        return numero * 100;
+      }
+      
+      return numero;
+    }
 
-      if (!peso || !altura) {
-        mostrarResultado("<p style='color: red; text-align: center;'>Preencha peso e altura</p>");
+    function calcularIMC() {
+      const pesoInput = document.getElementById('peso-imc').value;
+      const alturaInput = document.getElementById('altura-imc').value;
+
+      const peso = converterParaNumero(pesoInput);
+      const altura = converterParaNumero(alturaInput) / 100; // Converte cm para m
+
+      if (!peso || !altura || peso <= 0 || altura <= 0) {
+        mostrarResultado("<div class='resultado-item' style='background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);'><p style='color: white; text-align: center;'>Preencha peso e altura corretamente</p><p style='color: white; text-align: center; font-size: 14px;'>Use números válidos (ex: 70.5 ou 70,5)</p></div>");
         scrollParaResultados();
         return;
       }
 
       const imc = peso / (altura * altura);
       let classificacao = '';
+      let corResultado = '';
 
-      if (imc < 18.5) classificacao = 'Abaixo do peso';
-      else if (imc < 25) classificacao = 'Peso normal';
-      else if (imc < 30) classificacao = 'Sobrepeso';
-      else if (imc < 35) classificacao = 'Obesidade Grau I';
-      else if (imc < 40) classificacao = 'Obesidade Grau II';
-      else classificacao = 'Obesidade Grau III';
+      if (imc < 18.5) {
+        classificacao = 'Abaixo do peso';
+        corResultado = 'linear-gradient(135deg, #4299e1 0%, #3182ce 100%)';
+      } else if (imc < 25) {
+        classificacao = 'Peso normal';
+        corResultado = 'linear-gradient(135deg, #48bb78 0%, #38a169 100%)';
+      } else if (imc < 30) {
+        classificacao = 'Sobrepeso';
+        corResultado = 'linear-gradient(135deg, #ed8936 0%, #dd6b20 100%)';
+      } else if (imc < 35) {
+        classificacao = 'Obesidade Grau I';
+        corResultado = 'linear-gradient(135deg, #ed8936 0%, #dd6b20 100%)';
+      } else if (imc < 40) {
+        classificacao = 'Obesidade Grau II';
+        corResultado = 'linear-gradient(135deg, #e53e3e 0%, #c53030 100%)';
+      } else {
+        classificacao = 'Obesidade Grau III';
+        corResultado = 'linear-gradient(135deg, #e53e3e 0%, #c53030 100%)';
+      }
 
       const resultado = `
-        <div class="resultado-item">
+        <div class="resultado-item" style="background: ${corResultado};">
           <h3>Resultado IMC</h3>
           <p><strong>IMC:</strong> ${imc.toFixed(2)}</p>
           <p><strong>Classificação:</strong> ${classificacao}</p>
+          <p><em>Baseado na classificação da Organização Mundial da Saúde</em></p>
         </div>
       `;
       
@@ -361,11 +220,14 @@
     function calcularTMB() {
       const idade = parseInt(document.getElementById('idade-tmb').value);
       const sexo = document.getElementById('sexo-tmb').value;
-      const peso = parseFloat(document.getElementById('peso-tmb').value);
-      const altura = parseFloat(document.getElementById('altura-tmb').value);
+      const pesoInput = document.getElementById('peso-tmb').value;
+      const alturaInput = document.getElementById('altura-tmb').value;
 
-      if (!idade || !sexo || !peso || !altura) {
-        mostrarResultado("<p style='color: red; text-align: center;'>Preencha todos os campos</p>");
+      const peso = converterParaNumero(pesoInput);
+      const altura = converterParaNumero(alturaInput);
+
+      if (!idade || !sexo || !peso || !altura || idade <= 0 || peso <= 0 || altura <= 0) {
+        mostrarResultado("<div class='resultado-item' style='background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);'><p style='color: white; text-align: center;'>Preencha todos os campos corretamente</p><p style='color: white; text-align: center; font-size: 14px;'>Use números válidos nos campos de peso e altura</p></div>");
         scrollParaResultados();
         return;
       }
@@ -378,10 +240,10 @@
       }
 
       const resultado = `
-        <div class="resultado-item">
+        <div class="resultado-item" style="background: linear-gradient(135deg, #9f7aea 0%, #805ad5 100%);">
           <h3>Resultado TMB</h3>
           <p><strong>Taxa Metabólica Basal:</strong> ${tmb.toFixed(0)} kcal/dia</p>
-          <p><em>Calorias que seu corpo gasta em repouso</em></p>
+          <p><em>Calorias que seu corpo gasta em repouso (equação de Harris-Benedict)</em></p>
         </div>
       `;
       
@@ -394,11 +256,13 @@
     }
 
     function scrollParaResultados() {
-      const elementoResultados = document.getElementById('resultados');
-      elementoResultados.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start' 
-      });
+      setTimeout(() => {
+        const elementoResultados = document.getElementById('resultados');
+        elementoResultados.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+      }, 100);
     }
   </script>
 </body>
