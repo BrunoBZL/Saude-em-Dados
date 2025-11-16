@@ -35,51 +35,14 @@ body {
   opacity: 0.9;
 }
 
-/* Abas da calculadora */
-.calculadora-tabs {
-  display: flex;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 15px 15px 0 0;
-  overflow: hidden;
-  margin-bottom: 0;
-}
-
-.calculadora-tab {
-  flex: 1;
-  padding: 15px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.7);
-  border: none;
-  font-size: 16px;
-  font-weight: 600;
-  color: #4a5568;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.calculadora-tab.active {
-  background: white;
-  color: #667eea;
-  box-shadow: 0 -2px 0 #667eea inset;
-}
-
-.calculadora-tab:hover {
-  background: white;
-}
-
-.calculadora-content {
-  display: none;
+.calculadora-section {
   background: rgba(255, 255, 255, 0.95);
   padding: 20px;
-  border-radius: 0 0 15px 15px;
+  border-radius: 15px;
   margin-bottom: 20px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.calculadora-content.active {
-  display: block;
 }
 
 .calculadora-section h2 {
@@ -381,29 +344,9 @@ tr:hover {
   }
 }
 
-.calculadora-content,
+.calculadora-section,
 .tabela-imc,
 .resultado-item,
 .pagina-nutricionista {
   animation: fadeIn 0.5s ease-out;
-}
-
-/* Responsividade para mobile */
-@media (max-width: 768px) {
-  .header h1 {
-    font-size: 24px;
-  }
-  
-  .header p {
-    font-size: 14px;
-  }
-  
-  .calculadora-tab {
-    padding: 12px;
-    font-size: 14px;
-  }
-  
-  .calculadora-content {
-    padding: 15px;
-  }
 }

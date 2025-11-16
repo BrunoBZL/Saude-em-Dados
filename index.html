@@ -13,83 +13,73 @@
     <div id="pagina-calculadora" class="pagina pagina-ativa">
       <div class="header">
         <h1>Saúde em Dados</h1>
-        <p>Calcule seu IMC e TMB de forma rápida e fácil</p>
+        <p>Calcule seu IMC e TMB</p>
       </div>
 
-      <!-- Abas da Calculadora -->
-      <div class="calculadora-tabs">
-        <button class="calculadora-tab active" onclick="mostrarAba('imc')">IMC</button>
-        <button class="calculadora-tab" onclick="mostrarAba('tmb')">TMB</button>
-      </div>
-
-      <!-- Conteúdo IMC -->
-      <div id="conteudo-imc" class="calculadora-content active">
-        <div class="calculadora-section">
-          <h2>IMC</h2>
-          <p><strong>O que é IMC?</strong> Índice de Massa Corporal - mede se você está no peso ideal.</p>
-          
-          <div class="form-group">
-            <label>Peso (kg)</label>
-            <input type="text" id="peso-imc" placeholder="Ex: 70 ou 70.5" inputmode="decimal">
-          </div>
-          
-          <div class="form-group">
-            <label>Altura (cm)</label>
-            <input type="text" id="altura-imc" placeholder="Ex: 170 ou 1.70" inputmode="decimal">
-          </div>
-          
-          <button class="btn-calcular" onclick="calcularIMC()">Calcular IMC</button>
+      <!-- Seção IMC -->
+      <div class="calculadora-section">
+        <h2>IMC</h2>
+        <p><strong>O que é IMC?</strong> Índice de Massa Corporal - mede se você está no peso ideal.</p>
+        
+        <div class="form-group">
+          <label>Peso (kg)</label>
+          <input type="text" id="peso-imc" placeholder="Ex: 70 ou 70.5" inputmode="decimal">
         </div>
-
-        <!-- Tabela IMC (só aparece na aba IMC) -->
-        <div class="tabela-imc">
-          <h3>Classificação do IMC</h3>
-          <table>
-            <tr><td>< 18,5</td><td>Abaixo do peso</td></tr>
-            <tr><td>18,5 - 24,9</td><td>Peso normal</td></tr>
-            <tr><td>25 - 29,9</td><td>Sobrepeso</td></tr>
-            <tr><td>30 - 34,9</td><td>Obesidade I</td></tr>
-            <tr><td>35 - 39,9</td><td>Obesidade II</td></tr>
-            <tr><td>> 40</td><td>Obesidade III</td></tr>
-          </table>
+        
+        <div class="form-group">
+          <label>Altura (cm)</label>
+          <input type="text" id="altura-imc" placeholder="Ex: 170 ou 1.70" inputmode="decimal">
         </div>
+        
+        <button class="btn-calcular" onclick="calcularIMC()">Calcular IMC</button>
       </div>
 
-      <!-- Conteúdo TMB -->
-      <div id="conteudo-tmb" class="calculadora-content">
-        <div class="calculadora-section">
-          <h2>TMB</h2>
-          <p><strong>O que é TMB?</strong> Taxa Metabólica Basal - calorias que seu corpo gasta em repouso.</p>
-          
-          <div class="form-group">
-            <label>Idade (anos)</label>
-            <input type="number" id="idade-tmb" placeholder="Ex: 30">
-          </div>
-          
-          <div class="form-group">
-            <label>Sexo</label>
-            <select id="sexo-tmb">
-              <option value="">Selecione</option>
-              <option value="masculino">Masculino</option>
-              <option value="feminino">Feminino</option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label>Peso (kg)</label>
-            <input type="text" id="peso-tmb" placeholder="Ex: 70 ou 70.5" inputmode="decimal">
-          </div>
-          
-          <div class="form-group">
-            <label>Altura (cm)</label>
-            <input type="text" id="altura-tmb" placeholder="Ex: 170" inputmode="decimal">
-          </div>
-          
-          <button class="btn-calcular" onclick="calcularTMB()">Calcular TMB</button>
+      <!-- Seção TMB -->
+      <div class="calculadora-section">
+        <h2>TMB</h2>
+        <p><strong>O que é TMB?</strong> Taxa Metabólica Basal - calorias que seu corpo gasta em repouso.</p>
+        
+        <div class="form-group">
+          <label>Idade (anos)</label>
+          <input type="number" id="idade-tmb" placeholder="Ex: 30">
         </div>
+        
+        <div class="form-group">
+          <label>Sexo</label>
+          <select id="sexo-tmb">
+            <option value="">Selecione</option>
+            <option value="masculino">Masculino</option>
+            <option value="feminino">Feminino</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>Peso (kg)</label>
+          <input type="text" id="peso-tmb" placeholder="Ex: 70 ou 70.5" inputmode="decimal">
+        </div>
+        
+        <div class="form-group">
+          <label>Altura (cm)</label>
+          <input type="text" id="altura-tmb" placeholder="Ex: 170" inputmode="decimal">
+        </div>
+        
+        <button class="btn-calcular" onclick="calcularTMB()">Calcular TMB</button>
       </div>
 
-      <!-- Resultados (comum para ambas as abas) -->
+      <!-- Tabela IMC -->
+      <div class="tabela-imc">
+        <h3>Classificação do IMC</h3>
+        <table>
+          <tr><td>< 18,5</td><td>Abaixo do peso</td></tr>
+          <tr><td>18,5 - 24,9</td><td>Peso normal</td></tr>
+          <tr><td>25 - 29,9</td><td>Sobrepeso</td></tr>
+          <tr><td>30 - 34,9</td><td>Obesidade I</td></tr>
+          <tr><td>35 - 39,9</td><td>Obesidade II</td></tr>
+          <tr><td>> 40</td><td>Obesidade III</td></tr>
+        </table>
+      </div>
+
+      <!-- Resultados -->
       <div id="resultados" class="resultados"></div>
 
       <!-- Botão Nutricionista -->
@@ -118,7 +108,7 @@
         </div>
 
         <div class="nutricionista-info">
-          <p><strong>Experiência em Nutrição e Psicanálise</strong></p>
+          <p><strong>Experiência em Nutrição e  Psicanálise</strong></p>
           <p>Atendimento online</p>
         </div>
 
@@ -145,12 +135,13 @@
   </div>
 
   <script>
-    // Função para mostrar páginas (calculadora/nutricionista)
     function mostrarPagina(pagina) {
+      // Esconder todas as páginas
       document.querySelectorAll('.pagina').forEach(pag => {
         pag.classList.remove('pagina-ativa');
       });
       
+      // Mostrar a página solicitada
       if (pagina === 'calculadora') {
         document.getElementById('pagina-calculadora').classList.add('pagina-ativa');
       } else {
@@ -158,36 +149,17 @@
       }
     }
 
-    // Função para alternar entre abas IMC/TMB
-    function mostrarAba(aba) {
-      // Atualizar tabs
-      document.querySelectorAll('.calculadora-tab').forEach(tab => {
-        tab.classList.remove('active');
-      });
-      document.querySelectorAll('.calculadora-content').forEach(content => {
-        content.classList.remove('active');
-      });
-      
-      // Ativar tab e conteúdo selecionado
-      if (aba === 'imc') {
-        document.querySelector('.calculadora-tab:nth-child(1)').classList.add('active');
-        document.getElementById('conteudo-imc').classList.add('active');
-      } else {
-        document.querySelector('.calculadora-tab:nth-child(2)').classList.add('active');
-        document.getElementById('conteudo-tmb').classList.add('active');
-      }
-      
-      // Limpar resultados ao trocar de aba
-      document.getElementById('resultados').innerHTML = '';
-    }
-
     // Função para converter string para número, tratando vírgula e ponto
     function converterParaNumero(valor) {
       if (!valor) return null;
       
+      // Substitui vírgula por ponto e remove espaços
       const valorLimpo = valor.toString().replace(',', '.').replace(/\s/g, '');
+      
+      // Converte para número
       const numero = parseFloat(valorLimpo);
       
+      // Se for altura em metros (menor que 3), converte para cm
       if (numero < 3 && valorLimpo.includes('.')) {
         return numero * 100;
       }
@@ -200,7 +172,7 @@
       const alturaInput = document.getElementById('altura-imc').value;
 
       const peso = converterParaNumero(pesoInput);
-      const altura = converterParaNumero(alturaInput) / 100;
+      const altura = converterParaNumero(alturaInput) / 100; // Converte cm para m
 
       if (!peso || !altura || peso <= 0 || altura <= 0) {
         mostrarResultado("<div class='resultado-item' style='background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);'><p style='color: white; text-align: center;'>Preencha peso e altura corretamente</p><p style='color: white; text-align: center; font-size: 14px;'>Use números válidos (ex: 70.5 ou 70,5)</p></div>");
