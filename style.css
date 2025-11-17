@@ -350,35 +350,3 @@ tr:hover {
 .pagina-nutricionista {
   animation: fadeIn 0.5s ease-out;
 }
-
-/* Responsividade para mobile */
-@media (max-width: 480px) {
-  body {
-    padding: 10px;
-  }
-  
-  .header h1 {
-    font-size: 24px;
-  }
-  
-  .header p {
-    font-size: 14px;
-  }
-  
-  .calculadora-section {
-    padding: 15px;
-  }
-  
-  .nutricionista-foto {
-    width: 120px;
-    height: 120px;
-  }
-  
-  .nutricionista-header h2 {
-    font-size: 20px;
-  }
-  
-  .nutricionista-header p {
-    font-size: 14px;
-  }
-}
